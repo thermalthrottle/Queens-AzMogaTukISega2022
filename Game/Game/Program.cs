@@ -8,6 +8,7 @@ namespace Game
         {
             Console.WriteLine("Hello World!");
             Console.WriteLine("Didaka log");
+            Console.WriteLine("3rayski was here");
         }
     }
 }
