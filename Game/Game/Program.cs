@@ -22,7 +22,8 @@ namespace Game
             Console.OutputEncoding = Encoding.Unicode;
             Console.ForegroundColor = fontColor;
             Console.Title = "Queens";
-
+            while(true){
+                 Console.Clear();
             //title ascii
             Console.ForegroundColor = titleColor;
             Console.WriteLine(title);
@@ -64,6 +65,8 @@ namespace Game
             //start
             ConsoleClear();
             new PlayerVSPlayerView();
+            }
+           
         }
 
         static void ConsoleClear()
