@@ -99,7 +99,10 @@ namespace Game.View
                     Console.Write("|");
                 for (int j = 0; j < n; j++)
                 {
-                    Console.Write("   |");
+                    if(_playerBoard.GameBoard[j, i]=='\0')
+                        Console.Write("   |");
+                    else
+                        Console.Write($" {_playerBoard.GameBoard[j, i]} |");
                 }
                 Console.WriteLine();
             }
