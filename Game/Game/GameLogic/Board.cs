@@ -33,17 +33,17 @@ namespace Game.GameLogic
         private void PlaceStraigthBlockades(int xOFPlacement, int yOFPlacement)
         {
 
-            for (int i = 0; i < board.GetLength(1); i++)
+            for (int i = 0; i < board.GetLength(0); i++)
             {
-                if (!IsPlacementOccupied(yOFPlacement, i))
+                if (!IsPlacementOccupied(i, yOFPlacement))
                 {
                     board[i, yOFPlacement] = '*';
                 }
 
             }
-            for (int i = 0; i < board.GetLength(0); i++)
+            for (int i = 0; i < board.GetLength(1); i++)
             {
-                if (!IsPlacementOccupied(i, xOFPlacement))
+                if (!IsPlacementOccupied(xOFPlacement, i))
                 {
                     board[xOFPlacement, i] = '*';
                 }
