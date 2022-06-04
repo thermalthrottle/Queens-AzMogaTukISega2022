@@ -15,6 +15,7 @@ namespace Game.View
         public PlayerVSPlayerView()
         {
             System.Console.WriteLine("Welcome in Player vs Player mode!");
+            Console.WriteLine();
             int[] dimensions = GetBoardSize();
             int width = dimensions[0];
             int height = dimensions[1];
@@ -107,12 +108,12 @@ namespace Game.View
                     System.Console.WriteLine("or if you want to end the current current game early please enter \"end\"");
                     Console.WriteLine("or enter \"clear\" to clear the console");
                     string cmd = Console.ReadLine();
-                    if (cmd == "end")
+                    if (cmd.ToLower() == "end")
                     {
                         endEarly = true;
                         break;
                     }
-                    else if (cmd == "clear")
+                    else if (cmd.ToLower() == "clear")
                     {
                         Console.Clear();
                     }
