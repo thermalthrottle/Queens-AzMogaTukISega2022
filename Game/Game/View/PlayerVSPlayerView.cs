@@ -26,8 +26,7 @@ namespace Game.View
 
         public PlayerVSPlayerView()
         {
-            System.Console.WriteLine("Welcome in Player vs Player mode!");
-            Console.WriteLine();
+            System.Console.WriteLine("Welcome in Player vs Player mode!\n");
             int[] dimensions = GetBoardSize();
             int width = dimensions[0];
             int height = dimensions[1];
@@ -70,6 +69,7 @@ namespace Game.View
             int n = _playerBoard.GameBoard.GetLength(0);
             int m = _playerBoard.GameBoard.GetLength(1);
             Console.ForegroundColor = boardColor;
+
             //column numbers
             string row_line = new string('-', n * 4 + 1);
             Console.Write("  ");
@@ -99,7 +99,7 @@ namespace Game.View
                     Console.Write("|");
                 for (int j = 0; j < n; j++)
                 {
-                    Console.Write(" * |");
+                    Console.Write("   |");
                 }
                 Console.WriteLine();
             }
@@ -149,19 +149,21 @@ namespace Game.View
                 }
                 catch (FormatException)
                 {
-                    System.Console.WriteLine("The dimension must be positive number!");
+                    System.Console.WriteLine("\nThe dimension must be positive number!\n");
                 }
                 catch (OverflowException)
                 {
-                    Console.WriteLine("The number you entered is too big!");
+                    Console.WriteLine("\nThe number you entered is too big!\n");
                 }
                 catch (ArgumentNullException)
                 {
-                    System.Console.WriteLine("How can you enter a null?");
+                    System.Console.WriteLine("\nHow can you enter a null?\n");
                 }
                 catch (ArgumentException ex)
                 {
+                    Console.WriteLine();
                     System.Console.WriteLine(ex.Message);
+                    Console.WriteLine();
                 }
 
             }
@@ -177,28 +179,30 @@ namespace Game.View
                 {
                     System.Console.Write("Please enter board width: ");
                     width = int.Parse(Console.ReadLine());
-                    if (width < 5) throw new ArgumentException("The entered width is too small!");
+                    if (width < 5) throw new ArgumentException("\nThe entered width is too small!\n");
                     System.Console.Write("Please enter board height: ");
                     height = int.Parse(Console.ReadLine());
-                    if (height < 5) throw new ArgumentException("The entered height is too small!");
+                    if (height < 5) throw new ArgumentException("\nThe entered height is too small!\n");
                     break;
 
                 }
                 catch (FormatException)
                 {
-                    System.Console.WriteLine("The dimension must be positive number!");
+                    System.Console.WriteLine("\nThe dimension must be positive number!\n");
                 }
                 catch (OverflowException)
                 {
-                    Console.WriteLine("The number you entered is too big!");
+                    Console.WriteLine("\nThe number you entered is too big!\n");
                 }
                 catch (ArgumentNullException)
                 {
-                    System.Console.WriteLine("How can you enter a null?");
+                    System.Console.WriteLine("\nHow can you enter a null?\n");
                 }
                 catch (ArgumentException ex)
                 {
+                    Console.WriteLine();
                     System.Console.WriteLine(ex.Message);
+                    Console.WriteLine();
                 }
 
             }
