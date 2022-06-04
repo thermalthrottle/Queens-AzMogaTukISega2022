@@ -17,18 +17,80 @@ namespace Game.GameLogic
             board = new char[width, height];
         }
 
-        public void Place(int x, int y)
+        public void Place(int x, int y, char player)
         {
-
+            if (!CheckIFGameFinished())
+            {
+                if (!IsPlacementOccupied(x - 1 , y - 1))
+                {
+                    board[x - 1, y - 1] = player;
+                    PlaceStraigthBlockades(x - 1, y - 1);
+                }
+            }
         }
 
-        private bool ValidateIfOccupied()
+        private void PlaceStraigthBlockades(int xOFPlacement, int yOFPlacement)
         {
+
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                if (!IsPlacementOccupied(i, yOFPlacement))
+                {
+                    board[i, yOFPlacement] = '*';
+                }
+
+            }
+            for (int i = 0; i < board.GetLength(1); i++)
+            {
+                if (!IsPlacementOccupied(xOFPlacement, i))
+                {
+                    board[xOFPlacement, i] = '*';
+                }
+            }
+        }
+
+        private void PlaceDiagonalBlockades(int xOFPlacement, int yOFPlacement)
+        {
+            for (int i = xOFPlacement; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < yOFPlacement; j++)
+                {
+
+                }
+            }
+        }
+             
+
+        private bool IsPlacementOccupied(int x, int y)
+        {
+            if (board[x,y] != '\0')
+            {
+                return true;
+            }
             return false;
+        }
+
+        private bool IsPlacementOutsideTheBoard(int x, int y)
+        {
+            if (x >= board.GetLength(0) || x < 1 || y >= board.GetLength(1) || y < 1)
+            {
+                return false;
+            }
+            return true;
         }
 
         private bool CheckIFGameFinished()
         {
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(0); j++)
+                {
+                    if (IsPlacementOccupied(i,j))
+                    {
+                        return true;
+                    }
+                }
+            }
             return false;
         }
     }
