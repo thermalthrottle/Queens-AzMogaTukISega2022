@@ -21,12 +21,17 @@ namespace Game.GameLogic
         {
             if (!CheckIFGameFinished())
             {
-                if (!IsPlacementOccupied(x, y))
+                if (IsPlacementOutsideTheBoard(x,y))
                 {
-                    board[x, y] = player;
-                    PlaceStraigthBlockades(x, y);
-                    PlaceDiagonalBlockades(x, y);
+                    throw new ArgumentException("Indexes were outside of the board");
                 }
+                if (IsPlacementOccupied(x, y))
+                {
+                    throw new ArgumentException("The cell is occupied");
+                }
+                board[x, y] = player;
+                PlaceStraigthBlockades(x, y);
+                PlaceDiagonalBlockades(x, y);
             }
         }
 
@@ -67,31 +72,26 @@ namespace Game.GameLogic
 
         private bool IsPlacementOutsideTheBoard(int x, int y)
         {
-            if (x >= board.GetLength(0) || x < 1 || y >= board.GetLength(1) || y < 1)
+            if (x >= board.GetLength(0) || x < 0 || y >= board.GetLength(1) || y < 0)
             {
                 return true;
             }
             return false;
         }
 
-        private bool CheckIFGameFinished()
+        public bool CheckIFGameFinished()
         {
-            int numberOfItemsOnTheBoard = 0;
             for (int i = 0; i < board.GetLength(0); i++)
             {
                 for (int j = 0; j < board.GetLength(0); j++)
                 {
-                    if (IsPlacementOccupied(i,j))
+                    if (!IsPlacementOccupied(i,j))
                     {
-                        numberOfItemsOnTheBoard++;
+                        return false;
                     }
                 }
             }
-            if (numberOfItemsOnTheBoard == board.Length)
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }

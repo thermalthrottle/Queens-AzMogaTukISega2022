@@ -50,11 +50,11 @@ namespace Game.View
                 {
                     char player = playerOneTurn?'1':'2';
                     _playerBoard.Place(x, y, player);
-                    //     if(_playerBoard.IsEnd)
-                    //    {
-                    //        PrintEndResult();
-                    //        break;
-                    //    }
+                    if (_playerBoard.CheckIFGameFinished())
+                    {
+                        PrintEndResult();
+                        break;
+                    }
                     playerOneTurn = !playerOneTurn;
                 }
                 catch (System.Exception ex)
