@@ -239,6 +239,8 @@ namespace Game.View
                 |___/                                                              ";
                 System.Console.WriteLine(win);
             }
+            System.Console.WriteLine("Press enter to continue...");
+            Console.ReadLine();
         }
     }
 }
