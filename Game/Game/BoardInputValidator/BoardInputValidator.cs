@@ -88,10 +88,10 @@ namespace Game.BoardInputValidator
                 {
                     System.Console.Write("Please enter board width: ");
                     width = int.Parse(Console.ReadLine());
-                    if (width < 5) throw new ArgumentException("\nThe entered width is too small!\n");
+                    if (width < 5) throw new ArgumentException("\nThe width must be positive number!\n");
                     System.Console.Write("Please enter board height: ");
                     height = int.Parse(Console.ReadLine());
-                    if (height < 5) throw new ArgumentException("\nThe entered height is too small!\n");
+                    if (height < 5) throw new ArgumentException("\nThe height must be positive number!\n");
                     break;
 
                 }

@@ -14,6 +14,7 @@ namespace Game.BoardOutput
             Console.ForegroundColor = ConsoleColors.ConsoleColors.boardColor;
 
             //column numbers
+            Console.WriteLine();
             string row_line = new string('-', n * 4 + 1);
             Console.Write("  ");
             for (int i = 0; i < n; i++)
@@ -55,8 +56,9 @@ namespace Game.BoardOutput
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColors.ConsoleColors.fontColor;
         }
-         internal static void PrintEndResult(bool playerOneTurn)
+         internal static void PrintEndResult(bool playerOneTurn,Board board)
         {
+            BoardToString(board);
             if (playerOneTurn)
             {
                 string win = @"

@@ -51,7 +51,7 @@ namespace Game.View
                     _playerBoard.Place(x, y, player);
                     if (_playerBoard.CheckIFGameFinished())
                     {
-                         BoardOutput.BoardOutput.PrintEndResult(playerOneTurn);
+                         BoardOutput.BoardOutput.PrintEndResult(playerOneTurn,_playerBoard);
                         break;
                     }
                     playerOneTurn = !playerOneTurn;

@@ -33,7 +33,7 @@ namespace Game
             Console.WriteLine(@"1: Start");
             Console.WriteLine(@"2: Exit");
             Console.WriteLine();
-
+            
             int choice = 0;
             while (true)
             {

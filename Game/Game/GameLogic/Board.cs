@@ -23,11 +23,11 @@ namespace Game.GameLogic
             {
                 if (IsPlacementOutsideTheBoard(x,y))
                 {
-                    throw new ArgumentException("Indexes were outside of the board");
+                    throw new ArgumentException("\nIndexes were outside of the board!\n");
                 }
                 if (IsPlacementOccupied(x, y))
                 {
-                    throw new ArgumentException("The cell is occupied");
+                    throw new ArgumentException("\nThe cell is occupied!\n");
                 }
                 board[x, y] = player;
                 PlaceStraigthBlockades(x, y);
