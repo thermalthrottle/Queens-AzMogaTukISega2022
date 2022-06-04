@@ -138,7 +138,11 @@ namespace Game.View
                     }
                     else if(cmd.ToLower() == "help")
                     {
-                        Console.WriteLine("\n[clear] to clear the console\n[end] to exit\n[help] for command list\n");
+                        Console.WriteLine("\n[clear] to clear the console\n[end] to exit\n[show] to show the board\n[help] for command list\n");
+                    }
+                    else if(cmd.ToLower() == "show")
+                    {
+                        BoardToString();
                     }
                     else
                     {

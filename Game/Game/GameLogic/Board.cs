@@ -57,10 +57,43 @@ namespace Game.GameLogic
 
         private void PlaceDiagonalBlockades(int xOFPlacement, int yOFPlacement)
         {
-
+           //main diag
+           int width = board.GetLength(0);
+           int height = board.GetLength(1);
+           int diffX_Y = xOFPlacement - yOFPlacement;
+           int x = diffX_Y>=0?diffX_Y:0;
+           while (true)
+           {
+               int y = x-diffX_Y;
+               try
+               {
+                   if(board[x,y]=='\0')board[x,y]='*';
+               }
+               catch (Exception)
+               {
+                    break;
+               }
+               x++;
+           }
+            int sumX_Y =xOFPlacement+yOFPlacement;
+            
+            x = sumX_Y-width+1;
+            x=x>=0?x:0;
+            while (true)
+           {
+               int y = sumX_Y-x;
+               try
+               {
+                   if(board[y,x]=='\0')board[y,x]='*';
+               }
+               catch (Exception)
+               {
+                    break;
+               }
+               x++;
+           }
         }
-             
-
+       
         private bool IsPlacementOccupied(int x, int y)
         {
             if (board[x,y] != '\0')
