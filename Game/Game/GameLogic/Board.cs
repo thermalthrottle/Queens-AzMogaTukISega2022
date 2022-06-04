@@ -21,11 +21,11 @@ namespace Game.GameLogic
         {
             if (!CheckIFGameFinished())
             {
-                if (!IsPlacementOccupied(x - 1 , y - 1))
+                if (!IsPlacementOccupied(x, y))
                 {
-                    board[x - 1, y - 1] = player;
-                    PlaceStraigthBlockades(x - 1, y - 1);
-                    PlaceDiagonalBlockades(x - 1, y - 1);
+                    board[y, x] = player;
+                    PlaceStraigthBlockades(x, y);
+                    PlaceDiagonalBlockades(x, y);
                 }
             }
         }
@@ -33,19 +33,19 @@ namespace Game.GameLogic
         private void PlaceStraigthBlockades(int xOFPlacement, int yOFPlacement)
         {
 
-            for (int i = 0; i < board.GetLength(0); i++)
+            for (int i = 0; i < board.GetLength(1); i++)
             {
                 if (!IsPlacementOccupied(i, yOFPlacement))
                 {
-                    board[i, yOFPlacement] = '*';
+                    board[yOFPlacement, i] = '*';
                 }
 
             }
-            for (int i = 0; i < board.GetLength(1); i++)
+            for (int i = 0; i < board.GetLength(0); i++)
             {
                 if (!IsPlacementOccupied(xOFPlacement, i))
                 {
-                    board[xOFPlacement, i] = '*';
+                    board[i, xOFPlacement] = '*';
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace Game.GameLogic
 
         private bool IsPlacementOccupied(int x, int y)
         {
-            if (board[x,y] != '\0')
+            if (board[y,x] != '\0')
             {
                 return true;
             }
