@@ -15,6 +15,7 @@ namespace Game.View
         public PlayerVSPlayerView()
         {
             System.Console.WriteLine("Welcome in Player vs Player mode!");
+            Console.WriteLine();
             int[] dimensions = GetBoardSize();
             int width = dimensions[0];
             int height = dimensions[1];
