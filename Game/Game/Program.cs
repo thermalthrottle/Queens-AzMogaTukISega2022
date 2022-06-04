@@ -38,6 +38,7 @@ namespace Game
             if (choice == 2)
                 Environment.Exit(0);
 
+            //start
             ConsoleClear();
             new PlayerVSPlayerView();
         }

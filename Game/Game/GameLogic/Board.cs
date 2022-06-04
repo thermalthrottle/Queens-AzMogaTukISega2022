@@ -108,15 +108,20 @@ namespace Game.GameLogic
 
         private bool CheckIFGameFinished()
         {
+            int numberOfItemsOnTheBoard = 0;
             for (int i = 0; i < board.GetLength(0); i++)
             {
                 for (int j = 0; j < board.GetLength(0); j++)
                 {
                     if (IsPlacementOccupied(i,j))
                     {
-                        return true;
+                        numberOfItemsOnTheBoard++;
                     }
                 }
+            }
+            if (numberOfItemsOnTheBoard == board.Length)
+            {
+                return true;
             }
             return false;
         }

@@ -39,7 +39,7 @@ namespace Game.View
             {
                 System.Console.WriteLine("");
                 BoardToString();
-                int[] cord = GetPlayerInputCord();
+                int[] cord = GetPlayerInputCord(playerOneTurn);
                 if (endEarly) {
                     PrintEndResult();
                     break;
@@ -49,7 +49,7 @@ namespace Game.View
                 try
                 {
                     char player = playerOneTurn?'1':'2';
-                    _playerBoard.Place(x, y,player);
+                    _playerBoard.Place(x, y, player);
                     //     if(_playerBoard.IsEnd)
                     //    {
                     //        PrintEndResult();
@@ -112,7 +112,7 @@ namespace Game.View
             Console.WriteLine();
             Console.ForegroundColor = fontColor;
         }
-        public int[] GetPlayerInputCord()
+        public int[] GetPlayerInputCord(bool player)
         {
             int x = 0;
             int y = 0;
@@ -120,8 +120,9 @@ namespace Game.View
             {
                 try
                 {
+                    int playerNumber = player == true ? 1 : 2;
                     Console.WriteLine("For command list [help]");
-                    System.Console.Write("Enter coordinates for your queen [x y]: ");
+                    System.Console.Write($"Player {playerNumber}: Enter coordinates for your queen [x y]: ");
                     string cmd = Console.ReadLine();
                     if (cmd.ToLower() == "end")
                     {
@@ -144,6 +145,8 @@ namespace Game.View
                         string[] cordsStr = cmd.Split();
                         if (cordsStr.Length != 2) throw new ArgumentException("Invalid cordinates");
                         int[] cords = cordsStr.Select(int.Parse).ToArray();
+                        x = cords[0];
+                        y = cords[1];
                         break;
                     }
                 }
