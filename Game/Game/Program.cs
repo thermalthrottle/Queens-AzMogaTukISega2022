@@ -6,145 +6,48 @@ namespace Game
 {
     internal class Program
     {
-        public static int n;
-        public static int m;
+        public static ConsoleColor fontColor = ConsoleColor.Cyan;
+        public static ConsoleColor titleColor = ConsoleColor.DarkCyan;
+        public static string title = @"
+   ____                           
+  /___ \_   _  ___  ___ _ __  ___ 
+ //  / / | | |/ _ \/ _ \ '_ \/ __|
+/ \_/ /| |_| |  __/  __/ | | \__ \
+\___,_\ \__,_|\___|\___|_| |_|___/
+                                  ";
 
         static void Main(string[] args)
         {
             //console setup
             Console.OutputEncoding = Encoding.Unicode;
-            Console.BackgroundColor = ConsoleColor.Gray;
-            Console.ForegroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = fontColor;
             Console.Title = "Queens";
 
-            //title
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            string title = @"
-   ____                           
-  /___ \_   _  ___  ___ _ __  ___ 
- //  / / | | |/ _ \/ _ \ '_ \/ __|
-/ \_/ /| |_| |  __/  __/ | | \__ \
-\___,_\ \__,_|\___|\___|_| |_|___/
-                                  ";
+            //title ascii
+            Console.ForegroundColor = titleColor;
             Console.WriteLine(title);
-            Console.ForegroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = fontColor;
 
-            new PlayerVSPlayerView();
-
-            //board args
-            /*Console.Write("Please enter board width: ");
-            n = int.Parse(Console.ReadLine());
-            Console.Write("Please enter board height: ");
-            m = int.Parse(Console.ReadLine());*/
-
-            //column numbers
-            /*string row_line = new string('-', n * 4 + 1);
-            Console.Write("  ");
-            for (int i = 0; i < n; i++)
-            {
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                if (i > 10)
-                    Console.Write($" {i} ");
-                else
-                    Console.Write($"  {i} ");
-                Console.ForegroundColor = ConsoleColor.Black;
-            }
+            //main menu
+            Console.WriteLine(@"1: Start");
+            Console.WriteLine(@"2: Exit");
             Console.WriteLine();
+            Console.Write("Select: ");
 
-            //draw rows
-            for (int i = 0; i < m; i++)
-            {
-                Console.Write("  ");
-                Console.Write(row_line);
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.Write($"{i}");
-                Console.ForegroundColor = ConsoleColor.Black;
-                if(i < 10)
-                    Console.Write(" |");
-                else
-                    Console.Write("|");
-                for (int j = 0; j < n; j++)
-                {
-                    Console.Write("   |");
-                }
-                Console.WriteLine();
-            }
+            int choice = int.Parse(Console.ReadLine());
+            if (choice == 2)
+                Environment.Exit(0);
 
-            Console.Write("  ");
-            Console.Write(row_line);
-            Console.WriteLine();*/
-
-            //place queen
-            /*Console.Write("x = ");
-            int px = int.Parse(Console.ReadLine());
-            Console.Write("y = ");
-            int py = int.Parse(Console.ReadLine());
-
-            Place(px, py);*/
+            ConsoleClear();
+            new PlayerVSPlayerView();
         }
 
-        public static void Place(int x, int y)
+        static void ConsoleClear()
         {
             Console.Clear();
-
-            //title
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            string title = @"
-   ____                           
-  /___ \_   _  ___  ___ _ __  ___ 
- //  / / | | |/ _ \/ _ \ '_ \/ __|
-/ \_/ /| |_| |  __/  __/ | | \__ \
-\___,_\ \__,_|\___|\___|_| |_|___/
-                                  ";
+            Console.ForegroundColor = titleColor;
             Console.WriteLine(title);
-            Console.ForegroundColor = ConsoleColor.Black;
-
-            string row_line = new string('-', n * 4 + 1);
-
-            //column numbers
-            Console.Write("  ");
-            for (int i = 0; i < n; i++)
-            {
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                if (i > 10)
-                    Console.Write($" {i} ");
-                else
-                    Console.Write($"  {i} ");
-                Console.ForegroundColor = ConsoleColor.Black;
-            }
-            Console.WriteLine();
-
-            //draw rows
-            for (int i = 0; i < m; i++)
-            {
-                Console.Write("  ");
-                Console.Write(row_line);
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.Write($"{i}");
-                Console.ForegroundColor = ConsoleColor.Black;
-                if (i < 10)
-                    Console.Write(" |");
-                else
-                    Console.Write("|");
-                for (int j = 0; j < n; j++)
-                {
-                    if (i == y - 1 && j == x - 1)
-                    {
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.Write(" 1 ");
-                        Console.BackgroundColor = ConsoleColor.Gray;
-                        Console.Write("|");
-                    }
-                    else
-                        Console.Write("   |");
-                }
-                Console.WriteLine();
-            }
-
-            Console.Write("  ");
-            Console.Write(row_line);
+            Console.ForegroundColor = fontColor;
         }
     }
 }
