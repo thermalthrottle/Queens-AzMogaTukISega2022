@@ -71,6 +71,7 @@ namespace Game.View
             Console.ForegroundColor = boardColor;
 
             //column numbers
+            Console.WriteLine();
             string row_line = new string('-', n * 4 + 1);
             Console.Write("  ");
             for (int i = 0; i < n; i++)
@@ -109,6 +110,7 @@ namespace Game.View
 
             Console.Write("  ");
             Console.Write(row_line);
+            Console.WriteLine();
             Console.WriteLine();
             Console.ForegroundColor = fontColor;
         }
