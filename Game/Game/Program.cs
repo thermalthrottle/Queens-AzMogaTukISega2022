@@ -17,7 +17,7 @@ namespace Game
             Console.ForegroundColor = ConsoleColor.Black;
             Console.Title = "Queens";
 
-            //title
+            //title ascii
             Console.ForegroundColor = ConsoleColor.DarkRed;
             string title = @"
    ____                           
@@ -28,6 +28,25 @@ namespace Game
                                   ";
             Console.WriteLine(title);
             Console.ForegroundColor = ConsoleColor.Black;
+
+            //player one ascii
+            string win = @"
+  ____  _                          ___              __        _____ _   _ ____  
+ |  _ \| | __ _ _   _  ___ _ __   / _ \ _ __   ___  \ \      / /_ _| \ | / ___| 
+ | |_) | |/ _` | | | |/ _ \ '__| | | | | '_ \ / _ \  \ \ /\ / / | ||  \| \___ \ 
+ |  __/| | (_| | |_| |  __/ |    | |_| | | | |  __/   \ V  V /  | || |\  |___) |
+ |_|   |_|\__,_|\__, |\___|_|     \___/|_| |_|\___|    \_/\_/  |___|_| \_|____/ 
+                |___/                                                           ";
+            //player two ascii
+            string win1 = @"
+  ____  _                         _____                __        _____ _   _ ____  
+ |  _ \| | __ _ _   _  ___ _ __  |_   _|_      _____   \ \      / /_ _| \ | / ___| 
+ | |_) | |/ _` | | | |/ _ \ '__|   | | \ \ /\ / / _ \   \ \ /\ / / | ||  \| \___ \ 
+ |  __/| | (_| | |_| |  __/ |      | |  \ V  V / (_) |   \ V  V /  | || |\  |___) |
+ |_|   |_|\__,_|\__, |\___|_|      |_|   \_/\_/ \___/     \_/\_/  |___|_| \_|____/ 
+                |___/                                                              ";
+            Console.WriteLine(win);
+            Console.WriteLine(win1);
 
             new PlayerVSPlayerView();
 
