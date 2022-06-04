@@ -119,7 +119,7 @@ namespace Game.View
                     else
                     {
                         string[] cordsStr = cmd.Split();
-                        if (cordsStr.Length != 2) throw new ArgumentException("Please the cordinates in the format \"<x> <y>\" to continue or \"end\" to end the current game early!");
+                        if (cordsStr.Length != 2) throw new ArgumentException("Please enter the cordinates in the format \"<x> <y>\" to continue or \"end\" to end the current game early!");
                         int[] cords = cordsStr.Select(int.Parse).ToArray();
                         break;
 
@@ -127,7 +127,7 @@ namespace Game.View
                 }
                 catch (FormatException)
                 {
-                    System.Console.WriteLine("The diminsion must be positive number!");
+                    System.Console.WriteLine("The dimension must be positive number!");
                 }
                 catch (OverflowException)
                 {
@@ -135,7 +135,7 @@ namespace Game.View
                 }
                 catch (ArgumentNullException)
                 {
-                    System.Console.WriteLine("How you enter a null?");
+                    System.Console.WriteLine("How can you enter a null?");
                 }
                 catch (ArgumentException ex)
                 {
@@ -164,7 +164,7 @@ namespace Game.View
                 }
                 catch (FormatException)
                 {
-                    System.Console.WriteLine("The diminsion must be positive number!");
+                    System.Console.WriteLine("The dimension must be positive number!");
                 }
                 catch (OverflowException)
                 {
@@ -172,7 +172,7 @@ namespace Game.View
                 }
                 catch (ArgumentNullException)
                 {
-                    System.Console.WriteLine("How you enter a null?");
+                    System.Console.WriteLine("How can you enter a null?");
                 }
                 catch (ArgumentException ex)
                 {
@@ -186,11 +186,11 @@ namespace Game.View
         {
             if (playerOneTurn)
             {
-                System.Console.WriteLine("Player one the winner");
+                System.Console.WriteLine("Player One WINS!");
             }
             else
             {
-                System.Console.WriteLine("Player two the winner");
+                System.Console.WriteLine("Player Two WINS!");
             }
         }
     }
