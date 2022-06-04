@@ -12,6 +12,18 @@ namespace Game.View
         private readonly Board _playerBoard;
         private bool playerOneTurn = true;
         private bool endEarly = false;
+        private ConsoleColor numberColor = ConsoleColor.Cyan;
+        private ConsoleColor boardColor = ConsoleColor.Blue;
+        private ConsoleColor fontColor = ConsoleColor.Cyan;
+        public static ConsoleColor titleColor = ConsoleColor.DarkCyan;
+        public static string title = @"
+   ____                           
+  /___ \_   _  ___  ___ _ __  ___ 
+ //  / / | | |/ _ \/ _ \ '_ \/ __|
+/ \_/ /| |_| |  __/  __/ | | \__ \
+\___,_\ \__,_|\___|\___|_| |_|___/
+                                  ";
+
         public PlayerVSPlayerView()
         {
             System.Console.WriteLine("Welcome in Player vs Player mode!");
@@ -57,18 +69,18 @@ namespace Game.View
         {
             int n = _playerBoard.GameBoard.GetLength(0);
             int m = _playerBoard.GameBoard.GetLength(1);
-
+            Console.ForegroundColor = boardColor;
             //column numbers
             string row_line = new string('-', n * 4 + 1);
             Console.Write("  ");
             for (int i = 0; i < n; i++)
             {
-                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.ForegroundColor = numberColor;
                 if (i > 10)
                     Console.Write($" {i} ");
                 else
                     Console.Write($"  {i} ");
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = boardColor;
             }
             Console.WriteLine();
 
@@ -78,9 +90,9 @@ namespace Game.View
                 Console.Write("  ");
                 Console.Write(row_line);
                 Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.ForegroundColor = numberColor;
                 Console.Write($"{i}");
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = boardColor;
                 if (i < 10)
                     Console.Write(" |");
                 else
@@ -95,6 +107,7 @@ namespace Game.View
             Console.Write("  ");
             Console.Write(row_line);
             Console.WriteLine();
+            Console.ForegroundColor = fontColor;
         }
         public int[] GetPlayerInputCord()
         {
@@ -104,9 +117,8 @@ namespace Game.View
             {
                 try
                 {
-                    System.Console.WriteLine("If you want to continue please enter cordinates of your next queen in the format \"<x> <y>\"");
-                    System.Console.WriteLine("or if you want to end the current current game early please enter \"end\"");
-                    Console.WriteLine("or enter \"clear\" to clear the console");
+                    Console.WriteLine("For command list [help]");
+                    System.Console.Write("Enter coordinates for your queen [x y]: ");
                     string cmd = Console.ReadLine();
                     if (cmd.ToLower() == "end")
                     {
@@ -116,11 +128,20 @@ namespace Game.View
                     else if (cmd.ToLower() == "clear")
                     {
                         Console.Clear();
+                        Console.ForegroundColor = titleColor;
+                        Console.WriteLine(title);
+                        Console.ForegroundColor = fontColor;
+                    }
+                    else if(cmd.ToLower() == "help")
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("[clear] to clear the console\n[end] to exit\n[help] for command list");
+                        Console.WriteLine();
                     }
                     else
                     {
                         string[] cordsStr = cmd.Split();
-                        if (cordsStr.Length != 2) throw new ArgumentException("Please enter the cordinates in the format \"<x> <y>\" to continue or \"end\" to end the current game early!");
+                        if (cordsStr.Length != 2) throw new ArgumentException("For command list[help]\nEnter coordinates for your queen [x y]: ");
                         int[] cords = cordsStr.Select(int.Parse).ToArray();
                         break;
 
@@ -154,10 +175,10 @@ namespace Game.View
             {
                 try
                 {
-                    System.Console.WriteLine("Please enter board width: ");
+                    System.Console.Write("Please enter board width: ");
                     width = int.Parse(Console.ReadLine());
                     if (width < 5) throw new ArgumentException("The entered width is too small!");
-                    System.Console.WriteLine("Please enter board height: ");
+                    System.Console.Write("Please enter board height: ");
                     height = int.Parse(Console.ReadLine());
                     if (height < 5) throw new ArgumentException("The entered height is too small!");
                     break;
@@ -187,13 +208,26 @@ namespace Game.View
         {
             if (playerOneTurn)
             {
-                System.Console.WriteLine("Player One WINS!");
+                string win = @"
+  ____  _                          ___              __        _____ _   _ ____  
+ |  _ \| | __ _ _   _  ___ _ __   / _ \ _ __   ___  \ \      / /_ _| \ | / ___| 
+ | |_) | |/ _` | | | |/ _ \ '__| | | | | '_ \ / _ \  \ \ /\ / / | ||  \| \___ \ 
+ |  __/| | (_| | |_| |  __/ |    | |_| | | | |  __/   \ V  V /  | || |\  |___) |
+ |_|   |_|\__,_|\__, |\___|_|     \___/|_| |_|\___|    \_/\_/  |___|_| \_|____/ 
+                |___/                                                           ";
+                System.Console.WriteLine(win);
             }
             else
             {
-                System.Console.WriteLine("Player Two WINS!");
+                string win = @"
+  ____  _                         _____                __        _____ _   _ ____  
+ |  _ \| | __ _ _   _  ___ _ __  |_   _|_      _____   \ \      / /_ _| \ | / ___| 
+ | |_) | |/ _` | | | |/ _ \ '__|   | | \ \ /\ / / _ \   \ \ /\ / / | ||  \| \___ \ 
+ |  __/| | (_| | |_| |  __/ |      | |  \ V  V / (_) |   \ V  V /  | || |\  |___) |
+ |_|   |_|\__,_|\__, |\___|_|      |_|   \_/\_/ \___/     \_/\_/  |___|_| \_|____/ 
+                |___/                                                              ";
+                System.Console.WriteLine(win);
             }
         }
     }
-
 }
