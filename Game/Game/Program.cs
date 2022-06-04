@@ -33,11 +33,34 @@ namespace Game
             Console.WriteLine(@"1: Start");
             Console.WriteLine(@"2: Exit");
             Console.WriteLine();
-            Console.Write("Select: ");
 
-            int choice = int.Parse(Console.ReadLine());
+            int choice = 0;
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Select: ");
+                    choice = int.Parse(Console.ReadLine());
+                    break;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Please enter 1 or 2");
+                    Console.WriteLine();
+                }
+            }
             if (choice == 2)
+            {
+                Console.WriteLine(@"
+   ____                 _   ____                  __
+  / ___| ___   ___   __| | | __ ) _   _  ___   _ / /
+ | |  _ / _ \ / _ \ / _` | |  _ \| | | |/ _ \ (_) | 
+ | |_| | (_) | (_) | (_| | | |_) | |_| |  __/  _| | 
+  \____|\___/ \___/ \__,_| |____/ \__, |\___| (_) | 
+                                  |___/          \_\");
                 Environment.Exit(0);
+            }
 
             //start
             ConsoleClear();
