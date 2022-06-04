@@ -28,7 +28,7 @@ namespace Game.View
                 System.Console.WriteLine("");
                 BoardToString();
                 int[] cord = GetPlayerInputCord();
-                if(endEarly)break;
+                if (endEarly) break;
                 int x = cord[0];
                 int y = cord[1];
                 try
@@ -63,22 +63,29 @@ namespace Game.View
                 {
                     System.Console.WriteLine("If you want to continue please enter cordinates of your next queen in the format \"<x> <y>\"");
                     System.Console.WriteLine("or if you want to end the current current game early please enter \"end\"");
+                    Console.WriteLine("or enter \"clear\" to clear the console");
                     string cmd = Console.ReadLine();
-                    if(cmd=="end")
+                    if (cmd == "end")
                     {
-                        endEarly=true;
+                        endEarly = true;
                         break;
                     }
+                    else if (cmd == "clear")
+                    {
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        string[] cordsStr = cmd.Split();
+                        if (cordsStr.Length != 2) throw new ArgumentException("Please the cordinates in the format \"<x> <y>\" to continue or \"end\" to end the current game early!");
+                        int[] cords = cordsStr.Select(int.Parse).ToArray();
+                        break;
 
-                    string[] cordsStr = cmd.Split();
-                    if(cordsStr.Length!=2)throw new ArgumentException("Please the cordinates in the format \"<x> <y>\" to continue or \"end\" to end the current game early!");
-                    int[] cords = cordsStr.Select(int.Parse).ToArray();
-                    break;
-
+                    }
                 }
-                catch (FormatException) 
+                catch (FormatException)
                 {
-                    Console.WriteLine("The diminsion must be positive number!");
+                    System.Console.WriteLine("The diminsion must be positive number!");
                 }
                 catch (OverflowException)
                 {
@@ -145,4 +152,5 @@ namespace Game.View
             }
         }
     }
+
 }
