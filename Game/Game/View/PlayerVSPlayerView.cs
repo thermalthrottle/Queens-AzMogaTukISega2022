@@ -217,6 +217,7 @@ namespace Game.View
         }
         public void PrintEndResult()
         {
+            BoardToString();
             if (playerOneTurn)
             {
                 string win = @"
