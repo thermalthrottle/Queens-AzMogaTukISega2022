@@ -28,7 +28,10 @@ namespace Game.View
                 System.Console.WriteLine("");
                 BoardToString();
                 int[] cord = GetPlayerInputCord();
-                if(endEarly)break;
+                if (endEarly) {
+                    PrintEndResult();
+                    break;
+                };
                 int x = cord[0];
                 int y = cord[1];
                 try
@@ -49,9 +52,48 @@ namespace Game.View
 
             }
         }
-        public string BoardToString()
+        public void BoardToString()
         {
-            return _playerBoard.GameBoard.ToString();
+            int n = _playerBoard.GameBoard.GetLength(0);
+            int m = _playerBoard.GameBoard.GetLength(1);
+
+            //column numbers
+            string row_line = new string('-', n * 4 + 1);
+            Console.Write("  ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                if (i > 10)
+                    Console.Write($" {i} ");
+                else
+                    Console.Write($"  {i} ");
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
+            Console.WriteLine();
+
+            //draw rows
+            for (int i = 0; i < m; i++)
+            {
+                Console.Write("  ");
+                Console.Write(row_line);
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.Write($"{i}");
+                Console.ForegroundColor = ConsoleColor.Black;
+                if (i < 10)
+                    Console.Write(" |");
+                else
+                    Console.Write("|");
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write(" * |");
+                }
+                Console.WriteLine();
+            }
+
+            Console.Write("  ");
+            Console.Write(row_line);
+            Console.WriteLine();
         }
         public int[] GetPlayerInputCord()
         {

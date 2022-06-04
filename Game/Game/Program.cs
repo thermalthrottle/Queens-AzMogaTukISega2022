@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game.View;
+using System;
 using System.Text;
 
 namespace Game
@@ -16,15 +17,28 @@ namespace Game
             Console.ForegroundColor = ConsoleColor.Black;
             Console.Title = "Queens";
 
+            //title
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            string title = @"
+   ____                           
+  /___ \_   _  ___  ___ _ __  ___ 
+ //  / / | | |/ _ \/ _ \ '_ \/ __|
+/ \_/ /| |_| |  __/  __/ | | \__ \
+\___,_\ \__,_|\___|\___|_| |_|___/
+                                  ";
+            Console.WriteLine(title);
+            Console.ForegroundColor = ConsoleColor.Black;
+
+            new PlayerVSPlayerView();
+
             //board args
-            Console.Write("Please enter board width: ");
+            /*Console.Write("Please enter board width: ");
             n = int.Parse(Console.ReadLine());
             Console.Write("Please enter board height: ");
-            m = int.Parse(Console.ReadLine());
+            m = int.Parse(Console.ReadLine());*/
 
-            string row_line = new string('-', n * 4 + 1);
-            
             //column numbers
+            /*string row_line = new string('-', n * 4 + 1);
             Console.Write("  ");
             for (int i = 0; i < n; i++)
             {
@@ -59,20 +73,33 @@ namespace Game
 
             Console.Write("  ");
             Console.Write(row_line);
-            Console.WriteLine();
+            Console.WriteLine();*/
 
             //place queen
-            Console.Write("x = ");
+            /*Console.Write("x = ");
             int px = int.Parse(Console.ReadLine());
             Console.Write("y = ");
             int py = int.Parse(Console.ReadLine());
 
-            Place(px, py);
+            Place(px, py);*/
         }
 
         public static void Place(int x, int y)
         {
             Console.Clear();
+
+            //title
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            string title = @"
+   ____                           
+  /___ \_   _  ___  ___ _ __  ___ 
+ //  / / | | |/ _ \/ _ \ '_ \/ __|
+/ \_/ /| |_| |  __/  __/ | | \__ \
+\___,_\ \__,_|\___|\___|_| |_|___/
+                                  ";
+            Console.WriteLine(title);
+            Console.ForegroundColor = ConsoleColor.Black;
+
             string row_line = new string('-', n * 4 + 1);
 
             //column numbers
