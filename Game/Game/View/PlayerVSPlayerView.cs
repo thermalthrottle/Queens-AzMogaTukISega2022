@@ -137,17 +137,14 @@ namespace Game.View
                     }
                     else if(cmd.ToLower() == "help")
                     {
-                        Console.WriteLine();
-                        Console.WriteLine("[clear] to clear the console\n[end] to exit\n[help] for command list");
-                        Console.WriteLine();
+                        Console.WriteLine("\n[clear] to clear the console\n[end] to exit\n[help] for command list\n");
                     }
                     else
                     {
                         string[] cordsStr = cmd.Split();
-                        if (cordsStr.Length != 2) throw new ArgumentException("For command list[help]\nEnter coordinates for your queen [x y]: ");
+                        if (cordsStr.Length != 2) throw new ArgumentException("Invalid cordinates");
                         int[] cords = cordsStr.Select(int.Parse).ToArray();
                         break;
-
                     }
                 }
                 catch (FormatException)
