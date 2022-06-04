@@ -71,14 +71,15 @@ namespace Game.GameLogic
                x++;
            }
             int sumX_Y =xOFPlacement+yOFPlacement;
-            x = sumX_Y-height;
+            
+            x = sumX_Y-width+1;
             x=x>=0?x:0;
             while (true)
            {
                int y = sumX_Y-x;
                try
                {
-                   if(board[x,y]=='\0')board[x,y]='*';
+                   if(board[y,x]=='\0')board[y,x]='*';
                }
                catch (Exception)
                {
