@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Game.GameLogic;
 
-namespace Game.BoardInputValidator
+namespace Game
 {
     internal static class BoardInputValidator
     {
@@ -34,9 +34,9 @@ namespace Game.BoardInputValidator
                     else if (cmd.ToLower() == "clear")
                     {
                         Console.Clear();
-                        Console.ForegroundColor = ConsoleColors.ConsoleColors.titleColor;
+                        Console.ForegroundColor = ConsoleColors.titleColor;
                         Console.WriteLine(title);
-                        Console.ForegroundColor = ConsoleColors.ConsoleColors.fontColor;
+                        Console.ForegroundColor = ConsoleColors.fontColor;
                     }
                     else if(cmd.ToLower() == "help")
                     {
@@ -44,7 +44,7 @@ namespace Game.BoardInputValidator
                     }
                     else if(cmd.ToLower() == "show")
                     {
-                        BoardOutput.BoardOutput.BoardToString(board);
+                        BoardOutput.BoardToString(board);
                     }
                     else
                     {
@@ -89,9 +89,11 @@ namespace Game.BoardInputValidator
                     System.Console.Write("Please enter board width: ");
                     width = int.Parse(Console.ReadLine());
                     if (width < 5) throw new ArgumentException("\nThe width must be positive number!\n");
+                    if(width>50)throw new ArgumentException("\nThe width must be less than 50!\n");
                     System.Console.Write("Please enter board height: ");
                     height = int.Parse(Console.ReadLine());
                     if (height < 5) throw new ArgumentException("\nThe height must be positive number!\n");
+                    if(height>50)throw new ArgumentException("\nThe height must be less than 50!\n");
                     break;
 
                 }

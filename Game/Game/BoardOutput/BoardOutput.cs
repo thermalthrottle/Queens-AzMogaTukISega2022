@@ -1,8 +1,7 @@
 using System;
-using Game.ConsoleColors;
 using Game.GameLogic;
 
-namespace Game.BoardOutput
+namespace Game
 {
     internal static class BoardOutput
     {
@@ -11,7 +10,7 @@ namespace Game.BoardOutput
             
             int n = board.GameBoard.GetLength(0);
             int m = board.GameBoard.GetLength(1);
-            Console.ForegroundColor = ConsoleColors.ConsoleColors.boardColor;
+            Console.ForegroundColor = ConsoleColors.boardColor;
 
             //column numbers
             Console.WriteLine();
@@ -19,12 +18,12 @@ namespace Game.BoardOutput
             Console.Write("  ");
             for (int i = 0; i < n; i++)
             {
-                Console.ForegroundColor = ConsoleColors.ConsoleColors.numberColor;
+                Console.ForegroundColor = ConsoleColors.numberColor;
                 if (i > 10)
                     Console.Write($" {i} ");
                 else
                     Console.Write($"  {i} ");
-                Console.ForegroundColor = ConsoleColors.ConsoleColors.boardColor;
+                Console.ForegroundColor = ConsoleColors.boardColor;
             }
             Console.WriteLine();
 
@@ -34,9 +33,9 @@ namespace Game.BoardOutput
                 Console.Write("  ");
                 Console.Write(row_line);
                 Console.WriteLine();
-                Console.ForegroundColor = ConsoleColors.ConsoleColors.numberColor;
+                Console.ForegroundColor = ConsoleColors.numberColor;
                 Console.Write($"{i}");
-                Console.ForegroundColor = ConsoleColors.ConsoleColors.boardColor;
+                Console.ForegroundColor = ConsoleColors.boardColor;
                 if (i < 10)
                     Console.Write(" |");
                 else
@@ -54,7 +53,7 @@ namespace Game.BoardOutput
             Console.Write("  ");
             Console.Write(row_line);
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColors.ConsoleColors.fontColor;
+            Console.ForegroundColor = ConsoleColors.fontColor;
         }
          internal static void PrintEndResult(bool playerOneTurn,Board board)
         {

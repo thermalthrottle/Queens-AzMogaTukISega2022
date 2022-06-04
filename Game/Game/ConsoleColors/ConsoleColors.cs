@@ -1,6 +1,6 @@
 using System;
 
-namespace Game.ConsoleColors
+namespace Game
 {
     public class ConsoleColors
     {
