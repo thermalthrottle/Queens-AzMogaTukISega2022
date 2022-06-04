@@ -25,6 +25,7 @@ namespace Game.GameLogic
                 {
                     board[x - 1, y - 1] = player;
                     PlaceStraigthBlockades(x - 1, y - 1);
+                    PlaceDiagonalBlockades(x - 1, y - 1);
                 }
             }
         }
@@ -51,13 +52,7 @@ namespace Game.GameLogic
 
         private void PlaceDiagonalBlockades(int xOFPlacement, int yOFPlacement)
         {
-            for (int i = xOFPlacement; i < board.GetLength(0); i++)
-            {
-                for (int j = 0; j < yOFPlacement; j++)
-                {
 
-                }
-            }
         }
              
 
@@ -74,9 +69,9 @@ namespace Game.GameLogic
         {
             if (x >= board.GetLength(0) || x < 1 || y >= board.GetLength(1) || y < 1)
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
         private bool CheckIFGameFinished()
