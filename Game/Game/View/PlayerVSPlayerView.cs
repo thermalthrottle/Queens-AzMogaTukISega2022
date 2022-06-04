@@ -28,13 +28,16 @@ namespace Game.View
                 System.Console.WriteLine("");
                 BoardToString();
                 int[] cord = GetPlayerInputCord();
-                if(endEarly)break;
+                if (endEarly) {
+                    PrintEndResult();
+                    break;
+                };
                 int x = cord[0];
                 int y = cord[1];
                 try
                 {
-
-                    _playerBoard.Place(x, y);
+                    char player = playerOneTurn?'1':'2';
+                    _playerBoard.Place(x, y,player);
                     //     if(_playerBoard.IsEnd)
                     //    {
                     //        PrintEndResult();
@@ -49,9 +52,48 @@ namespace Game.View
 
             }
         }
-        public string BoardToString()
+        public void BoardToString()
         {
-            return _playerBoard.GameBoard.ToString();
+            int n = _playerBoard.GameBoard.GetLength(0);
+            int m = _playerBoard.GameBoard.GetLength(1);
+
+            //column numbers
+            string row_line = new string('-', n * 4 + 1);
+            Console.Write("  ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                if (i > 10)
+                    Console.Write($" {i} ");
+                else
+                    Console.Write($"  {i} ");
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
+            Console.WriteLine();
+
+            //draw rows
+            for (int i = 0; i < m; i++)
+            {
+                Console.Write("  ");
+                Console.Write(row_line);
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.Write($"{i}");
+                Console.ForegroundColor = ConsoleColor.Black;
+                if (i < 10)
+                    Console.Write(" |");
+                else
+                    Console.Write("|");
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write(" * |");
+                }
+                Console.WriteLine();
+            }
+
+            Console.Write("  ");
+            Console.Write(row_line);
+            Console.WriteLine();
         }
         public int[] GetPlayerInputCord()
         {
@@ -63,22 +105,29 @@ namespace Game.View
                 {
                     System.Console.WriteLine("If you want to continue please enter cordinates of your next queen in the format \"<x> <y>\"");
                     System.Console.WriteLine("or if you want to end the current current game early please enter \"end\"");
+                    Console.WriteLine("or enter \"clear\" to clear the console");
                     string cmd = Console.ReadLine();
-                    if(cmd=="end")
+                    if (cmd == "end")
                     {
-                        endEarly=true;
+                        endEarly = true;
                         break;
                     }
+                    else if (cmd == "clear")
+                    {
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        string[] cordsStr = cmd.Split();
+                        if (cordsStr.Length != 2) throw new ArgumentException("Please enter the cordinates in the format \"<x> <y>\" to continue or \"end\" to end the current game early!");
+                        int[] cords = cordsStr.Select(int.Parse).ToArray();
+                        break;
 
-                    string[] cordsStr = cmd.Split();
-                    if(cordsStr.Length!=2)throw new ArgumentException("Please the cordinates in the format \"<x> <y>\" to continue or \"end\" to end the current game early!");
-                    int[] cords = cordsStr.Select(int.Parse).ToArray();
-                    break;
-
+                    }
                 }
-                catch (FormatException) 
+                catch (FormatException)
                 {
-                    Console.WriteLine("The diminsion must be positive number!");
+                    System.Console.WriteLine("The dimension must be positive number!");
                 }
                 catch (OverflowException)
                 {
@@ -86,7 +135,7 @@ namespace Game.View
                 }
                 catch (ArgumentNullException)
                 {
-                    System.Console.WriteLine("How you enter a null?");
+                    System.Console.WriteLine("How can you enter a null?");
                 }
                 catch (ArgumentException ex)
                 {
@@ -115,7 +164,7 @@ namespace Game.View
                 }
                 catch (FormatException)
                 {
-                    System.Console.WriteLine("The diminsion must be positive number!");
+                    System.Console.WriteLine("The dimension must be positive number!");
                 }
                 catch (OverflowException)
                 {
@@ -123,7 +172,7 @@ namespace Game.View
                 }
                 catch (ArgumentNullException)
                 {
-                    System.Console.WriteLine("How you enter a null?");
+                    System.Console.WriteLine("How can you enter a null?");
                 }
                 catch (ArgumentException ex)
                 {
@@ -137,12 +186,13 @@ namespace Game.View
         {
             if (playerOneTurn)
             {
-                System.Console.WriteLine("Player one the winner");
+                System.Console.WriteLine("Player One WINS!");
             }
             else
             {
-                System.Console.WriteLine("Player two the winner");
+                System.Console.WriteLine("Player Two WINS!");
             }
         }
     }
+
 }
